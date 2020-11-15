@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
+use Faker\Generator;
 
 class SubscriberModel extends Model
 {
@@ -8,6 +9,8 @@ class SubscriberModel extends Model
     protected $primaryKey = 'id';
 
     protected $allowedFields = ['name', 'email', 'is_subscribed', 'is_active'];
+
+    protected $returnType = 'object';
 
     protected $useSoftDeletes = true;
     protected $useTimestamps  = true;
@@ -20,6 +23,16 @@ class SubscriberModel extends Model
     public function new($data)
     {
         return $this->insert($data, true);
+    }
+
+
+    public function fake(Generator &$faker)
+    {
+        return [
+            'name'          => $faker->name,
+            'email'         => $faker->safeEmail,
+            'is_subscribed' => $faker->randomElement([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0])
+        ];
     }
 
 }
