@@ -6,11 +6,4 @@ class Home extends BaseController
 	{
 		return view('Home/home');
 	}
-
-	//--------------------------------------------------------------------
-
-    public function about()
-    {
-        return view('Home/about');
-    }
 }
