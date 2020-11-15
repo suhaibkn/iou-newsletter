@@ -6,7 +6,17 @@ class Admin extends BaseController
 	{
         log_message('info', 'Admin logged in.');
 
-		return view('Admin/home');
+		return redirect()->to(base_url().'/admin/newsletters');
 	}
+
+    public function newsletters()
+    {
+        return view('Admin/newsletters');
+	}
+
+    public function subscribers()
+    {
+        return view('Admin/subscribers');
+    }
 
 }
