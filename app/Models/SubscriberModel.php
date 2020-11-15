@@ -25,6 +25,11 @@ class SubscriberModel extends Model
         return $this->insert($data, true);
     }
 
+    public function isRegistered($email)
+    {
+        return ($this->where('email', $email)->countAllResults() > 0);
+    }
+
 
     public function fake(Generator &$faker)
     {

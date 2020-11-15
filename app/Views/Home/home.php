@@ -2,7 +2,11 @@
 
 <?= $this->section('content') ?>
 
-<?php $validation = \Config\Services::validation(); ?>
+<?php
+$validation = \Config\Services::validation();
+$emailDuplErr = session()->getFlashdata('duplicate') == 1;
+
+?>
 
     <div class="container-fluid bg-info d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="col-md-6 bg-light rounded p-3">
@@ -23,12 +27,16 @@
                 <div class="form-group">
                     <label for="subscriber_email">Email address</label>
                     <input type="text"
-                           class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>"
+                           class="form-control <?= ($validation->hasError('email') || $emailDuplErr) ? 'is-invalid' : ''; ?>"
                            id="subscriber_email" name="email" value="<?= old('email'); ?>"
                            aria-describedby="emailHelp">
                     <?php if ($validation->hasError('email')): ?>
                         <small id="emailHelp" class="form-text text-danger">
                             <?= $validation->getError('email') ?>
+                        </small>
+                    <?php elseif ($emailDuplErr): ?>
+                        <small id="emailHelp" class="form-text text-danger">
+                            This email address is already registered. Please try with a different email address.
                         </small>
                     <?php else: ?>
                         <small id="emailHelp" class="form-text text-muted">

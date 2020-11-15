@@ -2,10 +2,11 @@
 
 <?= $this->section('content') ?>
 
-<div class="container-fluid p-0">
+    <div class="container-fluid p-0">
         <?= $this->include('Admin/layouts/navbar'); ?>
-</div>
 
-<?= $this->renderSection('main'); ?>
+        <?= $this->renderSection('main'); ?>
+    </div>
+
 
 <?= $this->endSection(); ?>
