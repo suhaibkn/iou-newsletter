@@ -102,6 +102,20 @@ class Admin extends BaseController
         }
     }
 
+    public function addnewsletter()
+    {
+        if ($this->request->getMethod() == 'get') {
+            return view('Admin/new_newsletter');
+        }
+    }
+
+    public function addsubscriber()
+    {
+        if ($this->request->getMethod() == 'get') {
+            return view('Admin/new_subscriber');
+        }
+    }
+
 
     public function fake()
     {

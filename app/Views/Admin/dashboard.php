@@ -17,8 +17,8 @@
 
             Total Newsletters <?= (new App\Models\NewsletterModel)->countAll(); ?> <br>
             Total Subscribers <?= (new App\Models\SubscriberModel())->countAll(); ?> <br>
-            <a href="">Add a subscriber</a> <br>
-            <a href="">Add a newsletter</a>
+            <a href="<?= base_url() ?>/admin/addsubscriber">Add a subscriber</a> <br>
+            <a href="<?= base_url() ?>/admin/addnewsletter">Add a newsletter</a>
             <br> <br> <br>
             <div class="card bg-dark text-white">
                 <div class="card-body">

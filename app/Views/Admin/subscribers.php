@@ -2,7 +2,19 @@
 
 <?= $this->section('main') ?>
 
-    <h3 class="p-2">Subscribers</h3>
+    <div class="container-fluid">
+        <div class="row my-2">
+
+            <div class="col">
+                <h3 class="">Subscribers</h3>
+            </div>
+
+            <div class="col text-right">
+                <a class="btn btn-outline-success" href="<?= base_url() ?>/admin/addsubscriber">Add a subscriber</a>
+            </div>
+
+        </div>
+    </div>
 
 <?php if (session()->has('msg')) { ?>
     <div class="alert alert-secondary alert-dismissible fade show" role="alert">
