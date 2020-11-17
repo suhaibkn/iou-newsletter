@@ -1,6 +1,6 @@
 <?php $url = explode('/', uri_string()); $count = count($url); $segment = ($count > 1) ? $url[1] : ''; ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="<?= base_url() ?>">Newsletter Dashboard</a>
+    <a class="navbar-brand" href="<?= base_url() ?>/admin">Newsletter Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
