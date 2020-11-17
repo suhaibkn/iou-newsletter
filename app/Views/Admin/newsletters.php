@@ -2,27 +2,39 @@
 
 <?= $this->section('main') ?>
 
-    Newsletters
-    <table class="table table-bordered table-sm">
-        <thead>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Created on</th>
-        </thead>
-        <tbody>
+    <h3 class="p-2">Newsletters</h3>
 
-        <?php foreach ($newsletters as $n) : ?>
-            <tr>
-                <td><?= $n->title ?></td>
-                <td><?= $n->author ?></td>
-                <td><?= $n->created_at ?></td>
-            </tr>
+<?php if (session()->has('msg')) { ?>
+    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('msg') ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php } ?>
 
+    <div class="card m-1 p-0">
+        <div class="card-body m-0 p-0">
 
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            <table class="table table-hover table-sm">
 
-<?= $pager->links() ?>
+                <?php foreach ($newsletters as $n) : ?>
+                    <tr>
+                        <td>
+                            <a href="<?= current_url() ?>/<?= $n->id ?>"><?= $n->title ?></a>
+                            🞄 <span class="text-muted"><?= $n->author ?></span>
+                        </td>
+                        <td class="text-muted text-right">
+                            <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </table>
+
+            <?= $pager->links() ?>
+
+        </div>
+    </div>
 
 <?= $this->endSection(); ?>

@@ -13,6 +13,7 @@
 
 <?= $this->renderSection('base') ?>
 
-<!--<script src="<?= base_url(); ?>/libs/js/bootstrap.min.js"></script>-->
+<script src="<?= base_url(); ?>/libs/js/jquery.slim.min.js"></script>
+<script src="<?= base_url(); ?>/libs/js/bootstrap.min.js"></script>
 </body>
 </html>
