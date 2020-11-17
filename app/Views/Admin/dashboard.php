@@ -17,8 +17,34 @@
 
             Total Newsletters <?= (new App\Models\NewsletterModel)->countAll(); ?> <br>
             Total Subscribers <?= (new App\Models\SubscriberModel())->countAll(); ?> <br>
-            Add a subscriber <br>
-            Add a newsletter
+            <a href="">Add a subscriber</a> <br>
+            <a href="">Add a newsletter</a>
+            <br> <br> <br>
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="border-bottom">Debug</h5>
+                    <div class="row my-1">
+                        <div class="col">Reset Database</div>
+                        <div class="col text-right">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-secondary">All</button>
+                                <button type="button" class="btn btn-secondary">Newsletters</button>
+                                <button type="button" class="btn btn-secondary">Subscribers</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-1">
+                        <div class="col">Populate Database with fake data</div>
+                        <div class="col text-right">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-secondary">All</button>
+                                <button type="button" class="btn btn-secondary">Newsletters</button>
+                                <button type="button" class="btn btn-secondary">Subscribers</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
