@@ -8,8 +8,7 @@ class Admin extends BaseController
 {
     public function index()
     {
-
-        return redirect()->to(base_url() . '/admin/newsletters');
+        return view('Admin/dashboard');
     }
 
     public function newsletters($id = null)
