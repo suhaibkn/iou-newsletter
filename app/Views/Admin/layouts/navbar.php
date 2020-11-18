@@ -7,6 +7,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>">Home</a>
+            </li>
             <li class="nav-item <?= ($segment == 'newsletters') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= base_url(); ?>/admin/newsletters">Newsletters</a>
             </li>
