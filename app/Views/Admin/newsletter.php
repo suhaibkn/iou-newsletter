@@ -42,7 +42,7 @@
                                class="form-control <?= ($validation->hasError('title')) ? 'is-invalid' : ''; ?>"
                                value="<?= old('title') ?: $newsletter->title ?>" aria-describedby="titleHelp"
                         >
-                        <small id="nameHelp" class="form-text text-danger">
+                        <small id="titleHelp" class="form-text text-danger">
                             <?= $validation->getError('title') ?>
                         </small>
                     </div>
@@ -55,7 +55,7 @@
                                   class="form-control <?= ($validation->hasError('content')) ? 'is-invalid' : ''; ?>"
                                   aria-describedby="contentHelp"
                         ><?= old('content') ?: $newsletter->content ?></textarea>
-                        <small id="nameHelp" class="form-text text-danger">
+                        <small id="contentHelp" class="form-text text-danger">
                             <?= $validation->getError('content') ?>
                         </small>
                     </div>

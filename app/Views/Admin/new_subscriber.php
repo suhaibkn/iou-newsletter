@@ -29,7 +29,7 @@
 
                 <div class="form-group text-right">
 
-                    <button type="submit" class="btn btn-primary mb-4" name="action" value="update">Add</button>
+                    <button type="submit" class="btn btn-outline-success mb-4" name="action" value="add">Add</button>
 
                 </div>
 
