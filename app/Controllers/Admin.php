@@ -110,6 +110,26 @@ class Admin extends BaseController
     {
         if ($this->request->getMethod() == 'get') {
             return view('Admin/new_newsletter');
+        } else {
+            if (!$this->validate([
+                'title'   => 'required|min_length[3]',
+                'author'  => 'required|min_length[3]',
+                'content' => 'required|min_length[10]',
+            ])) {
+                return redirect()->to(current_url())->withInput();
+            } else {
+                if ((new NewsletterModel())->new([
+                    'title'      => $this->request->getVar('title'),
+                    'author'     => $this->request->getVar('author'),
+                    'content'    => $this->request->getVar('content'),
+                    'created_by' => 'admin',
+                ])) {
+                    $msg = 'Newsletter added.';
+                } else {
+                    $msg = 'Newsletter couldn\'t be added. Try again.';
+                }
+                return redirect()->to(current_url())->with('msg', $msg);
+            }
         }
     }
 
