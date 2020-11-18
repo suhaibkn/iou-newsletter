@@ -117,6 +117,24 @@ class Admin extends BaseController
     {
         if ($this->request->getMethod() == 'get') {
             return view('Admin/new_subscriber');
+        } else {
+            if (!$this->validate([
+                'name'  => 'required|min_length[3]',
+                'email' => 'required|valid_email',
+            ])) {
+                return redirect()->to(current_url())->withInput();
+            } else {
+                if ((new SubscriberModel())->new([
+                    'name'          => $this->request->getVar('name'),
+                    'email'         => $this->request->getVar('email'),
+                    'is_subscribed' => true,
+                ])) {
+                    $msg = 'Subscriber added.';
+                } else {
+                    $msg = 'Subscriber couldn\'t be added. Try again.';
+                }
+                return redirect()->to(current_url())->with('msg', $msg);
+            }
         }
     }
 
