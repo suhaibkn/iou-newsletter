@@ -169,10 +169,30 @@ class Admin extends BaseController
     }
 
 
-    public function fake()
+    public function fake($db = 'all', $count = 25)
     {
-        $fk = new Fabricator(SubscriberModel::class);
-        $fk->create(25);
+        $msg = 'There was some error populating the tables. Please try again later.';
+
+        if ($db == 'all') {
+            $nws = (new Fabricator(NewsletterModel::class))->create($count);
+            $sbs = (new Fabricator(SubscriberModel::class))->create($count);
+
+            if ($nws && $sbs) {
+                $msg = 'All database tables have been populated.';
+            }
+        } elseif ($db == 'nws') {
+            if ((new Fabricator(NewsletterModel::class))->create($count)) {
+                $msg = 'Table <kbd>newsletters</kbd> has been populated.';
+            }
+
+        } elseif ($db == 'sbs') {
+            if ((new Fabricator(SubscriberModel::class))->create($count)) {
+                $msg = 'Table <kbd>subscribers</kbd> has been populated.';
+            }
+        }
+
+        return redirect()->back()->with('msg', $msg);
+
     }
 
     public function resetdb($db = 'all')
@@ -183,16 +203,16 @@ class Admin extends BaseController
             $sbs = \Config\Database::connect()->table('subscribers')->emptyTable();
 
             if ($nws && $sbs) {
-                $msg = 'All databases have reset.';
+                $msg = 'All database tables have been reset.';
             }
         } elseif ($db == 'nws') {
             if (\Config\Database::connect()->table('newsletters')->emptyTable()) {
-                $msg = 'Database <kbd>newsletters</kbd> has been reset.';
+                $msg = 'Table <kbd>newsletters</kbd> has been reset.';
             }
 
         } elseif ($db == 'sbs') {
             if (\Config\Database::connect()->table('subscribers')->emptyTable()) {
-                $msg = 'Database <kbd>subscribers</kbd> has been reset.';
+                $msg = 'Table <kbd>subscribers</kbd> has been reset.';
             }
         }
 

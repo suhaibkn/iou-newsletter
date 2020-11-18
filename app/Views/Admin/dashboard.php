@@ -57,11 +57,10 @@
                         <h5 class="border-bottom">Quick Links</h5>
                         <div class="row">
                             <div class="col">
-                                <a href="<?= base_url() ?>/admin/addsubscriber" class="">
-                                    Add a subscriber</a> 🞄
                                 <a href="<?= base_url() ?>/admin/addnewsletter" class="">
-                                    Add a newsletter
-                                </a>
+                                    Add a newsletter</a> 🞄
+                                <a href="<?= base_url() ?>/admin/addsubscriber" class="">
+                                    Add a subscriber</a>
                             </div>
                         </div>
                     </div>
@@ -75,9 +74,8 @@
                             <div class="col">Reset Database</div>
                             <div class="col text-right">
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a type="button" class="btn btn-danger" href="<?= current_url() ?>/resetdb">
-                                        All
-                                    </a>
+                                    <a type="button" class="btn btn-danger"
+                                       href="<?= current_url() ?>/resetdb">All</a>
                                     <a type="button" class="btn btn-outline-danger"
                                        href="<?= current_url() ?>/resetdb/nws">Newsletters</a>
                                     <a type="button" class="btn btn-outline-danger"
@@ -85,14 +83,34 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row my-1 mt-2">
                             <div class="col">Populate Database with fake data</div>
                             <div class="col text-right">
+                                <small>25 entries</small>
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a type="button" class="btn btn-danger">All</a>
-                                    <a type="button" class="btn btn-outline-danger">Newsletters</a>
-                                    <a type="button" class="btn btn-outline-danger">Subscribers</a>
+                                    <a type="button" class="btn btn-danger"
+                                       href="<?= current_url() ?>/fake">All</a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/fake/nws">Newsletters</a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/fake/sbs">Subscribers</a>
                                 </div>
+
+                            </div>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col"></div>
+                            <div class="col text-right">
+                                <small>100 entries</small>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a type="button" class="btn btn-danger"
+                                       href="<?= current_url() ?>/fake/all/100">All</a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/fake/nws/100">Newsletters</a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/fake/sbs/100">Subscribers</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
