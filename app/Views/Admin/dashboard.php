@@ -12,38 +12,92 @@
     </div>
 <?php } ?>
 
-    <div class="card m-2 p-0">
+    <div class="card m-2 p-0 border-0">
         <div class="card-body m-2 p-2">
 
-            Total Newsletters <?= count((new App\Models\NewsletterModel)->findAll()); ?> <br>
-            Total Subscribers <?= count((new App\Models\SubscriberModel())->findAll()); ?> <br>
-            <a href="<?= base_url() ?>/admin/addsubscriber">Add a subscriber</a> <br>
-            <a href="<?= base_url() ?>/admin/addnewsletter">Add a newsletter</a>
-            <br> <br> <br>
-            <div class="card bg-dark text-white">
-                <div class="card-body">
-                    <h5 class="border-bottom">Debug</h5>
-                    <div class="row my-1">
-                        <div class="col">Reset Database</div>
-                        <div class="col text-right">
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button type="button" class="btn btn-secondary">All</button>
-                                <button type="button" class="btn btn-secondary">Newsletters</button>
-                                <button type="button" class="btn btn-secondary">Subscribers</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-1">
-                        <div class="col">Populate Database with fake data</div>
-                        <div class="col text-right">
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button type="button" class="btn btn-secondary">All</button>
-                                <button type="button" class="btn btn-secondary">Newsletters</button>
-                                <button type="button" class="btn btn-secondary">Subscribers</button>
+            <div class="row">
+
+                <div class="col-2 card m-1 p-1">
+                    <div class="card-body">
+                        <h5 class="border-bottom">Metrics</h5>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col d-flex justify-content-between">
+                                        <div>
+                                            <a href="<?= base_url(); ?>/admin/newsletters">Total Newsletters</a>
+                                        </div>
+                                        <div>
+                                            <span class="badge badge-pill badge-info">
+                                            <?= count((new App\Models\NewsletterModel)->findAll()); ?>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-between">
+                                        <div>
+                                            <a href="<?= base_url(); ?>/admin/subscribers">Total Subscribers</a>
+                                        </div>
+                                        <div>
+                                            <span class="badge badge-pill badge-info">
+                                            <?= count((new App\Models\SubscriberModel())->findAll()); ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-2 card m-1 p-1">
+                    <div class="card-body">
+                        <h5 class="border-bottom">Quick Links</h5>
+                        <div class="row">
+                            <div class="col">
+                                <a href="<?= base_url() ?>/admin/addsubscriber" class="">
+                                    Add a subscriber</a> 🞄
+                                <a href="<?= base_url() ?>/admin/addnewsletter" class="">
+                                    Add a newsletter
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+
+                <div class="col-5 card m-1 p-1 border-danger">
+                    <div class="card-body">
+                        <h5 class="border-bottom">Debug</h5>
+                        <div class="row my-1">
+                            <div class="col">Reset Database</div>
+                            <div class="col text-right">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a type="button" class="btn btn-danger" href="<?= current_url() ?>/resetdb">
+                                        All
+                                    </a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/resetdb/nws">Newsletters</a>
+                                    <a type="button" class="btn btn-outline-danger"
+                                       href="<?= current_url() ?>/resetdb/sbs">Subscribers</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-1">
+                            <div class="col">Populate Database with fake data</div>
+                            <div class="col text-right">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a type="button" class="btn btn-danger">All</a>
+                                    <a type="button" class="btn btn-outline-danger">Newsletters</a>
+                                    <a type="button" class="btn btn-outline-danger">Subscribers</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>

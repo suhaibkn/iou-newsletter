@@ -82,7 +82,8 @@ class Admin extends BaseController
                 $sub = new SubscriberModel();
                 $eml = $vars->getVar('email');
                 if (($sub->find($id)->email != $eml) && $sub->isRegistered($eml)) {
-                    session()->setFlashdata('duplicate', '1'); $fail = true;
+                    session()->setFlashdata('duplicate', '1');
+                    $fail = true;
                 }
                 if (!$this->validate([
                     'name'  => 'required|min_length[3]',
@@ -91,10 +92,10 @@ class Admin extends BaseController
                     return redirect()->to(current_url())->withInput();
                 } else {
                     if (!isset($fail) && $model->update($id, [
-                        'name'          => $vars->getVar('name'),
-                        'email'         => $vars->getVar('email'),
-                        'is_subscribed' => $vars->getVar('subscribed') ? 1 : 0,
-                    ])) {
+                            'name'          => $vars->getVar('name'),
+                            'email'         => $vars->getVar('email'),
+                            'is_subscribed' => $vars->getVar('subscribed') ? 1 : 0,
+                        ])) {
                         $msg = 'Subscriber details updated.';
                     } else {
                         $msg = 'Subscriber details couldn\'t be updated. Try again.';
@@ -144,7 +145,8 @@ class Admin extends BaseController
             return view('Admin/new_subscriber');
         } else {
             if ((new SubscriberModel())->isRegistered($this->request->getVar('email'))) {
-                session()->setFlashdata('duplicate', '1'); $fail = true;
+                session()->setFlashdata('duplicate', '1');
+                $fail = true;
             }
             if (!$this->validate([
                 'name'  => 'required|min_length[3]',
@@ -152,11 +154,11 @@ class Admin extends BaseController
             ])) {
                 return redirect()->to(current_url())->withInput();
             } else {
-                if (!isset($fail) && new SubscriberModel())->new([
-                    'name'          => $this->request->getVar('name'),
-                    'email'         => $this->request->getVar('email'),
-                    'is_subscribed' => true,
-                ])) {
+                if (!isset($fail) && (new SubscriberModel())->new([
+                        'name'          => $this->request->getVar('name'),
+                        'email'         => $this->request->getVar('email'),
+                        'is_subscribed' => true,
+                    ])) {
                     $msg = 'Subscriber added.';
                 } else {
                     $msg = 'Subscriber couldn\'t be added. Try again.';
@@ -171,7 +173,30 @@ class Admin extends BaseController
     {
         $fk = new Fabricator(SubscriberModel::class);
         $fk->create(25);
+    }
 
+    public function resetdb($db = 'all')
+    {
+        $msg = 'There was some error. Please try again later.';
+        if ($db == 'all') {
+            $nws = \Config\Database::connect()->table('newsletters')->emptyTable();
+            $sbs = \Config\Database::connect()->table('subscribers')->emptyTable();
+
+            if ($nws && $sbs) {
+                $msg = 'All databases have reset.';
+            }
+        } elseif ($db == 'nws') {
+            if (\Config\Database::connect()->table('newsletters')->emptyTable()) {
+                $msg = 'Database <kbd>newsletters</kbd> has been reset.';
+            }
+
+        } elseif ($db == 'sbs') {
+            if (\Config\Database::connect()->table('subscribers')->emptyTable()) {
+                $msg = 'Database <kbd>subscribers</kbd> has been reset.';
+            }
+        }
+
+        return redirect()->back()->with('msg', $msg);
     }
 
 }
