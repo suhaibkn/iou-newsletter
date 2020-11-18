@@ -1,7 +1,15 @@
+<?php
+
+use Config\Services;
+
+?>
 <?= $this->extend('Admin/layouts/base') ?>
 
 <?= $this->section('main') ?>
-<?php $validation = \Config\Services::validation(); ?>
+<?php
+$validation   = Services::validation();
+$emailDuplErr = session()->getFlashdata('duplicate') == 1;
+?>
 
 
 <?php if (session()->has('msg')) { ?>
@@ -20,9 +28,9 @@
 
                 <div class="form-group text-right">
 
-                        <button type="submit" class="btn btn-primary mb-4" name="action" value="update">Update</button>
+                    <button type="submit" class="btn btn-primary mb-4" name="action" value="update">Update</button>
 
-                        <button type="submit" class="btn btn-danger mb-4" name="action" value="delete">Delete</button>
+                    <button type="submit" class="btn btn-danger mb-4" name="action" value="delete">Delete</button>
 
                 </div>
 
@@ -55,13 +63,19 @@
                     <div class="col-sm-10">
 
                         <input type="text" id="email" name="email" placeholder="Email"
-                               class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>"
+                               class="form-control <?= ($validation->hasError('email') || $emailDuplErr) ? 'is-invalid' : ''; ?>"
                                aria-describedby="emailHelp"
                                value="<?= old('email') ?: $subscriber->email ?>"
                         >
-                        <small id="emailHelp" class="form-text text-danger">
-                            <?= $validation->getError('email') ?>
-                        </small>
+                        <?php if ($validation->hasError('email')): ?>
+                            <small id="emailHelp" class="form-text text-danger">
+                                <?= $validation->getError('email') ?>
+                            </small>
+                        <?php elseif ($emailDuplErr): ?>
+                            <small id="emailHelp" class="form-text text-danger">
+                                This email address is already registered. Please try with a different email address.
+                            </small>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -69,7 +83,7 @@
                     <div class="col-sm-2"></div>
                     <div class="col-10 form-check pl-5">
                         <input type="checkbox" class="form-check-input" id="subscribed" name="subscribed"
-                               <?= ($subscriber->is_subscribed) ? 'checked' : '' ?>>
+                            <?= ($subscriber->is_subscribed) ? 'checked' : '' ?>>
                         <label class="form-check-label" for="subscribed">Subscribed to Newsletter</label>
                     </div>
                 </div>

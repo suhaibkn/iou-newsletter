@@ -79,13 +79,18 @@ class Admin extends BaseController
             $vars = $this->request;
 
             if ($vars->getVar('action') == 'update') {
+                $sub = new SubscriberModel();
+                $eml = $vars->getVar('email');
+                if (($sub->find($id)->email != $eml) && $sub->isRegistered($eml)) {
+                    session()->setFlashdata('duplicate', '1'); $fail = true;
+                }
                 if (!$this->validate([
                     'name'  => 'required|min_length[3]',
                     'email' => 'required|valid_email',
                 ])) {
                     return redirect()->to(current_url())->withInput();
                 } else {
-                    if ($model->update($id, [
+                    if (!isset($fail) && $model->update($id, [
                         'name'          => $vars->getVar('name'),
                         'email'         => $vars->getVar('email'),
                         'is_subscribed' => $vars->getVar('subscribed') ? 1 : 0,
@@ -138,13 +143,16 @@ class Admin extends BaseController
         if ($this->request->getMethod() == 'get') {
             return view('Admin/new_subscriber');
         } else {
+            if ((new SubscriberModel())->isRegistered($this->request->getVar('email'))) {
+                session()->setFlashdata('duplicate', '1'); $fail = true;
+            }
             if (!$this->validate([
                 'name'  => 'required|min_length[3]',
                 'email' => 'required|valid_email',
             ])) {
                 return redirect()->to(current_url())->withInput();
             } else {
-                if ((new SubscriberModel())->new([
+                if (!isset($fail) && new SubscriberModel())->new([
                     'name'          => $this->request->getVar('name'),
                     'email'         => $this->request->getVar('email'),
                     'is_subscribed' => true,

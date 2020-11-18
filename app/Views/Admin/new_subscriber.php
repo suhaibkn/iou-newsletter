@@ -1,7 +1,10 @@
 <?= $this->extend('Admin/layouts/base') ?>
 
 <?= $this->section('main') ?>
-<?php $validation = \Config\Services::validation(); ?>
+<?php
+$validation   = \Config\Services::validation();
+$emailDuplErr = session()->getFlashdata('duplicate') == 1;
+?>
 
 <?php if (session()->has('msg')) { ?>
     <div class="alert alert-secondary alert-dismissible fade show" role="alert">
@@ -52,13 +55,19 @@
                     <div class="col-sm-10">
 
                         <input type="text" id="email" name="email" placeholder="Email"
-                               class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>"
+                               class="form-control <?= ($validation->hasError('email') || $emailDuplErr) ? 'is-invalid' : ''; ?>"
                                aria-describedby="emailHelp"
                                value="<?= old('email') ?>"
                         >
-                        <small id="emailHelp" class="form-text text-danger">
-                            <?= $validation->getError('email') ?>
-                        </small>
+                        <?php if ($validation->hasError('email')): ?>
+                            <small id="emailHelp" class="form-text text-danger">
+                                <?= $validation->getError('email') ?>
+                            </small>
+                        <?php elseif ($emailDuplErr): ?>
+                            <small id="emailHelp" class="form-text text-danger">
+                                This email address is already registered. Please try with a different email address.
+                            </small>
+                        <?php endif; ?>
                     </div>
                 </div>
 
