@@ -21,6 +21,8 @@ class Admin extends BaseController
                     'newsletters' => $model->paginate(20),
                     'pager'       => $model->pager,
                 ]);
+            } elseif ($model->find($id) == null) {
+                return redirect()->to(base_url() . '/admin/newsletters');
             } else {
                 return view('Admin/newsletter', [
                     'newsletter' => $model->find($id),
@@ -66,6 +68,8 @@ class Admin extends BaseController
                     'subscribers' => $model->paginate(20),
                     'pager'       => $model->pager,
                 ]);
+            } elseif ($model->find($id) == null) {
+                return redirect()->to(base_url() . '/admin/subscribers');
             } else {
                 return view('Admin/subscriber', [
                     'subscriber' => $model->find($id),
