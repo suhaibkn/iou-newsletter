@@ -15,8 +15,8 @@
     <div class="card m-2 p-0">
         <div class="card-body m-2 p-2">
 
-            Total Newsletters <?= (new App\Models\NewsletterModel)->countAll(); ?> <br>
-            Total Subscribers <?= (new App\Models\SubscriberModel())->countAll(); ?> <br>
+            Total Newsletters <?= count((new App\Models\NewsletterModel)->findAll()); ?> <br>
+            Total Subscribers <?= count((new App\Models\SubscriberModel())->findAll()); ?> <br>
             <a href="<?= base_url() ?>/admin/addsubscriber">Add a subscriber</a> <br>
             <a href="<?= base_url() ?>/admin/addnewsletter">Add a newsletter</a>
             <br> <br> <br>

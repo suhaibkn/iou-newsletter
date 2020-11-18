@@ -37,7 +37,11 @@
                             🞄 <span class="text-muted"><?= $n->email ?></span>
                         </td>
                         <td class="text-muted text-right">
-                            <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
+                            <span class="small">
+                                <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
+                                (<?= CodeIgniter\I18n\Time::parse($n->created_at)->toLocalizedString('MMM dd, YYYY') ?> at
+                                <?= CodeIgniter\I18n\Time::parse($n->created_at)->toLocalizedString('h:mm a') ?>)
+                            </span>
                         </td>
                     </tr>
                 <?php endforeach; ?>
