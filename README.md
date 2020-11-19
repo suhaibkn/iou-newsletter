@@ -2,12 +2,14 @@
 
 ## Setup and Installation
 
-1. Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+1. Copy/rename `env` to `.env` and tailor for your env configs, specifically the baseURL (line 25)
+and any database settings (lines 59-61).
 
-2. `composer install` to install the dependencies
+2. `composer install` to install the CodeIgniter dependencies.
 
-3. `php spark serve`
+3. `php spark migrate` to migrate in the table/database schema.
+
+4. `php spark serve` if using the CI's built-in PHP server, or point your browser to `http://localhost/<project-dir>/public` if using Apache.
 
 
 ## Server Requirements

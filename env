@@ -14,13 +14,17 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = production
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
 
-# app.baseURL = ''
+########################################################
+## Set this to your /public directory if using Apache ##
+app.baseURL = ''
+########################################################
+
 # app.forceGlobalSecureRequests = false
 
 # app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
@@ -49,11 +53,17 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
+#####################################################################
+################### Change these 3 accordingly ######################
+
+database.default.database = _iou_ci_newsletter  // 1
+database.default.username = root                // 2
+database.default.password =                     // 3
+
+#####################################################################
+
+database.default.hostname = localhost
+database.default.DBDriver = MySQLi
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
