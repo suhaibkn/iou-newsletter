@@ -34,12 +34,14 @@ class Admin extends BaseController
             if ($vars->getVar('action') == 'update') {
                 if (!$this->validate([
                     'title'   => 'required|min_length[3]',
+                    'author'  => 'required|min_length[3]',
                     'content' => 'required|min_length[3]',
                 ])) {
                     return redirect()->to(current_url())->withInput();
                 } else {
                     if ($model->update($id, [
                         'title'   => $vars->getVar('title'),
+                        'author'  => $vars->getVar('author'),
                         'content' => $vars->getVar('content'),
                     ])) {
                         $msg = 'Newsletter updated.';

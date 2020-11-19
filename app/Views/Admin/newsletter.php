@@ -49,6 +49,19 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Author</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="author"
+                               class="form-control <?= ($validation->hasError('author')) ? 'is-invalid' : ''; ?>"
+                               value="<?= old('author') ?: $newsletter->author ?>" aria-describedby="authorHelp"
+                        >
+                        <small id="authorHelp" class="form-text text-danger">
+                            <?= $validation->getError('author') ?>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Content</label>
                     <div class="col-sm-10">
                         <textarea rows="10" name="content"
