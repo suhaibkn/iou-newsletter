@@ -21,8 +21,9 @@ CI_ENVIRONMENT = production
 #--------------------------------------------------------------------
 
 ########################################################
-## Set this to your /public directory if using Apache ##
-app.baseURL = ''
+### Uncomment and set this to your /public directory ###
+### if using on an Apache serve                      ###
+# app.baseURL = ''
 ########################################################
 
 # app.forceGlobalSecureRequests = false
@@ -55,6 +56,7 @@ app.baseURL = ''
 
 #####################################################################
 ################### Change these 3 accordingly ######################
+## Create a new db and set the credentials/details here
 
 database.default.database = _iou_ci_newsletter
 database.default.username = root
