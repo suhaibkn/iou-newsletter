@@ -56,9 +56,9 @@ app.baseURL = ''
 #####################################################################
 ################### Change these 3 accordingly ######################
 
-database.default.database = _iou_ci_newsletter  // 1
-database.default.username = root                // 2
-database.default.password =                     // 3
+database.default.database = _iou_ci_newsletter
+database.default.username = root
+database.default.password =
 
 #####################################################################
 
