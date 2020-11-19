@@ -28,27 +28,43 @@
     <div class="card m-1 p-0">
         <div class="card-body m-0 p-0">
 
-            <table class="table table-hover table-sm">
+            <?php if (count($subscribers) > 0) : ?>
+                <table class="table table-hover table-sm">
 
-                <?php foreach ($subscribers as $n) : ?>
-                    <tr>
-                        <td>
-                            <a href="<?= current_url() ?>/<?= $n->id ?>"><?= $n->name ?></a>
-                            🞄 <span class="text-muted"><?= $n->email ?></span>
-                        </td>
-                        <td class="text-muted text-right">
+                    <?php foreach ($subscribers as $n) : ?>
+                        <tr>
+                            <td>
+                                <a href="<?= current_url() ?>/<?= $n->id ?>"><?= $n->name ?></a>
+                                🞄 <span class="text-muted"><?= $n->email ?></span>
+                            </td>
+                            <td class="text-muted text-right">
                             <span class="small">
                                 <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
                                 (<?= CodeIgniter\I18n\Time::parse($n->created_at)->toLocalizedString('MMM dd, YYYY') ?> at
                                 <?= CodeIgniter\I18n\Time::parse($n->created_at)->toLocalizedString('h:mm a') ?>)
                             </span>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
 
-            </table>
+                </table>
 
-            <?= $pager->links() ?>
+                <?= $pager->links() ?>
+
+            <?php else : ?>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4">:(</h1>
+                            <p class="lead">No subscribers found.
+                                Add a subscriber first and try again.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php endif; ?>
 
         </div>
     </div>

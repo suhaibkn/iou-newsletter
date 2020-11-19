@@ -29,25 +29,41 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 <?php } else { ?>
-                    <table class="table table-sm table-borderless table-hover">
-                        <?php foreach ($news as $n): ?>
-                            <tr>
-                                <td>
-                                    <a href="<?= base_url() ?>/subscriber/news/<?= $n->id ?>"><?= $n->title ?></a>
-                                    <span class="mx-1">🞄</span> <span class="text-muted"><?= $n->author ?></span>
-                                </td>
-                                <td class="text-muted text-right">
-                                    <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
+                    <?php if (count($news) > 0) : ?>
 
-                    <?= $pager->links(); ?>
+                        <table class="table table-sm table-borderless table-hover">
+                            <?php foreach ($news as $n): ?>
+                                <tr>
+                                    <td>
+                                        <a href="<?= base_url() ?>/subscriber/news/<?= $n->id ?>"><?= $n->title ?></a>
+                                        <span class="mx-1">🞄</span> <span class="text-muted"><?= $n->author ?></span>
+                                    </td>
+                                    <td class="text-muted text-right">
+                                        <?= CodeIgniter\I18n\Time::parse($n->created_at)->humanize() ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+
+                        <?= $pager->links(); ?>
+
+                    <?php else : ?>
+
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <div class="jumbotron jumbotron-fluid">
+                                    <div class="container">
+                                        <h1 class="display-4">:(</h1>
+                                        <p class="lead">No newsletters found.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
                 <?php } ?>
 
             </div>
